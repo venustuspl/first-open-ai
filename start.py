@@ -11,13 +11,15 @@ client = OpenAI(
 
 )
 
-
 chat_completion = client.chat.completions.create(
     messages=[
         {
             "role": "user",
-            "content": "Say this is a test",
+            "content": "Write weather in San francisco",
         }
     ],
     model="gpt-3.5-turbo",
 )
+
+model_response = chat_completion.choices[0].message.content
+print(model_response)

@@ -14,11 +14,17 @@ client = OpenAI(
 chat_completion = client.chat.completions.create(
     messages=[
         {
-            "role": "user",
-            "content": "Write weather in San francisco",
+            "role":"user",
+            "content":"write a poem about the java developer work",
         }
     ],
     model="gpt-3.5-turbo",
+    temperature=0.5,
+    max_tokens=256,
+    n=1,
+    stop="null",
+    presence_penalty=0,
+    frequency_penalty=0.1
 )
 
 model_response = chat_completion.choices[0].message.content

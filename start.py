@@ -9,6 +9,16 @@ from dotenv import load_dotenv
 
 def get_timestamp():
     return datetime.now().strftime("%Y%b%d_%H-%M")
+
+def get_own_prompt():
+    while True:
+        x = input("Enter your prompt: ")
+        if (len(x) < 5):
+            print("Prompt too short")
+            continue
+        else:
+            return (x)
+
 def save_output_to_file(
     out_dir,
     output,
@@ -30,11 +40,13 @@ def main():
 
     )
 
+    user_prompt = get_own_prompt()
+
     chat_completion = client.chat.completions.create(
         messages=[
             {
                 "role":"user",
-                "content":"write a poem about the java developer work",
+                "content":user_prompt
             }
         ],
         model="gpt-3.5-turbo",

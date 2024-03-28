@@ -34,9 +34,12 @@ def save_output_to_file(
 def main():
     load_dotenv(),
 
+    openai_api_key = os.environ.get("OPENAI_API_KEY", None)
+    assert openai_api_key is not None, "OpenAI API key not found."
+
     client = OpenAI(
         # This is the default and can be omitted
-        api_key=os.environ.get('OPENAI_API_KEY'),
+        api_key=openai_api_key,
 
     )
 

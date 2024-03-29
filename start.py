@@ -7,6 +7,17 @@ from openai import OpenAI
 
 from dotenv import load_dotenv
 
+AVAILABLE_MODELS = [
+    "gpt-4",
+    "gpt-4-0314",
+    "gpt-4-32k",
+    "gpt-4-32k-0314",
+    "gpt-3.5-turbo",
+    "gpt-3.5-turbo-0301",
+    "text-davinci-003",
+    "code-davinci-002",
+]
+
 def get_timestamp():
     return datetime.now().strftime("%Y%b%d_%H-%M")
 

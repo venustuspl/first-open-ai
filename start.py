@@ -18,6 +18,12 @@ AVAILABLE_MODELS = [
     "code-davinci-002",
 ]
 
+def validate_model(model):
+    if model not in AVAILABLE_MODELS:
+        raise ValueError(
+            f"Invalid model '{model}', available models: {', '.join(AVAILABLE_MODELS)}"
+        )
+
 def get_timestamp():
     return datetime.now().strftime("%Y%b%d_%H-%M")
 
@@ -47,6 +53,8 @@ def main():
 
     openai_api_key = os.environ.get("OPENAI_API_KEY", None)
     assert openai_api_key is not None, "OpenAI API key not found."
+    model = "gpt-3.5-turbo"
+    validate_model(model)
 
     client = OpenAI(
         # This is the default and can be omitted
@@ -63,7 +71,7 @@ def main():
                 "content":user_prompt
             }
         ],
-        model="gpt-3.5-turbo",
+        model=model,
         temperature=0.5,
         max_tokens=256,
         n=1,

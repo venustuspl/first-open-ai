@@ -36,6 +36,11 @@ def get_own_prompt():
         else:
             return (x)
 
+def read_and_clean_file(file_path, lower=False):
+    with open(file_path, "r", encoding="utf-8") as f:
+        context = clean(f.read(), lower=lower)
+    return context
+
 def save_output_to_file(
     out_dir,
     output,

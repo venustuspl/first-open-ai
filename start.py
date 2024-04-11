@@ -36,6 +36,24 @@ def get_own_prompt():
         else:
             return (x)
 
+def save_output_to_file(
+    out_dir,
+    output,
+    file_name,
+):
+    """
+    Saves the generated output to a file.
+    :param out_dir: The output directory.
+    :param output: The text to be saved.
+    :param file_name: The name of the output file.
+    """
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    output_file = out_dir / file_name
+
+    with output_file.open("w") as f:
+        f.write(output)
+
 def read_and_clean_file(file_path, lower=False):
     with open(file_path, "r", encoding="utf-8") as f:
         context = clean(f.read(), lower=lower)
